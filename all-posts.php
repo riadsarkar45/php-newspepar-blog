@@ -106,6 +106,7 @@ include("include/sidebar.php");
               <th width="15%">Category</th>
               <th width="15%">Image</th>
               <th width="10%">Date</th>
+              <th width="10%">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -113,14 +114,11 @@ include("include/sidebar.php");
                 $count_cat = $connect->query("SELECT COUNT(*) FROM post")->fetchColumn();
                 $totalRecords = $count_cat; // Retrieve the total number of records from your database
 
-                // Step 2: Define the number of records per page and calculate the total number of pages
                 $recordsPerPage = 6;
                 $totalPages = ceil($totalRecords / $recordsPerPage);
 
-                // Step 3: Determine the current page number
                 $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
 
-                // Step 4: Query the database to fetch records for the current page
                 $offset = ($currentPage - 1) * $recordsPerPage;
                 if (isset($_GET['cats']) && isset($_GET['dates'])) {
                     $cat = $_GET['cats'];
@@ -165,6 +163,7 @@ include("include/sidebar.php");
               <td><?php echo $row['category'] ?></td>
               <td> <img style="width: 50%;" src="images/<?php echo $row['image'] ?>" alt="<?php echo $row['image'] ?>"> </td>
               <td><?php echo $row['date'] ?></td>
+              <td> <a href="edit-post.php?postId=<?php echo $row['id']  ?>"><span class="label label-warning">Edit</span></a> </td>
             </tr>
           <?php }}else{ ?>
             <tr class="alert alert-danger">

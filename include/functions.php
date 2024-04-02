@@ -13,10 +13,8 @@ function add_post()
     $stuffPick = isset($_POST["staffPick"]) ? $_POST["staffPick"] : "";
     if (isset($_POST['tags']) && is_array($_POST['tags']) && count($_POST['tags']) > 0) {
       $firstTag = $_POST['tags'][0];
-      //echo "First tag: " . $firstTag;
     }
     $cat = first_cat($category);
-    //$tag = first_cat($tag);
     $image = $_FILES['image']['name'];
     $temp_name1 = $_FILES['image']['tmp_name'];
     move_uploaded_file($temp_name1, "images/$image");
