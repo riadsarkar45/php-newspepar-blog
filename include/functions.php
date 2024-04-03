@@ -571,3 +571,5 @@ function limitWords($text, $limit)
 
   return $text;
 }
+
+
